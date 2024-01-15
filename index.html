@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./calculator.png" type="image/x-icon" />
+    <title>Simple Calculator</title>
+    <style>
+      input[type="button"] {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+      }
+      input[type="button"]:hover {
+        background-color: black;
+        color: white;
+      }
+
+      #table-data {
+        background-color: rgba(173, 216, 230, 0.795);
+        border-radius: 5px;
+        padding: 15px;
+        margin: 0 auto; /* Center the table */
+      }
+
+      #display {
+        width: 97%;
+        border: none;
+        background-color: rgba(137, 43, 226, 0.305);
+        padding: 4px;
+        border-radius: 5px;
+        margin-bottom: 2px;
+        font-size: 18px;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center">Simple Calculator</h2>
+    <table id="table-data">
+      <tr>
+        <td colspan="4">
+          <input
+            type="text"
+            id="display"
+            readonly
+            onfocus="this.removeAttribute('readonly');"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><input type="button" value="1" onclick="appendNumber('1')" /></td>
+        <td><input type="button" value="2" onclick="appendNumber('2')" /></td>
+        <td><input type="button" value="3" onclick="appendNumber('3')" /></td>
+        <td><input type="button" value="/" onclick="appendOperator('/')" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="4" onclick="appendNumber('4')" /></td>
+        <td><input type="button" value="5" onclick="appendNumber('5')" /></td>
+        <td><input type="button" value="6" onclick="appendNumber('6')" /></td>
+        <td><input type="button" value="-" onclick="appendOperator('-')" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="7" onclick="appendNumber('7')" /></td>
+        <td><input type="button" value="8" onclick="appendNumber('8')" /></td>
+        <td><input type="button" value="9" onclick="appendNumber('9')" /></td>
+        <td><input type="button" value="+" onclick="appendOperator('+')" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="0" onclick="appendNumber('0')" /></td>
+        <td><input type="button" value="." onclick="appendDecimal()" /></td>
+        <td><input type="button" value="=" onclick="calculate()" /></td>
+        <td><input type="button" value="C" onclick="clearDisplay()" /></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td>
+          <input type="button" value="DEL" onclick="deleteLastCharacter();" />
+        </td>
+      </tr>
+    </table>
+
+    <script>
+      let displayValue = "";
+
+      function appendNumber(number) {
+        displayValue += number;
+        updateDisplay();
+      }
+
+      function appendOperator(operator) {
+        displayValue += operator;
+        updateDisplay();
+      }
+
+      function appendDecimal() {
+        if (!displayValue.includes(".")) {
+          displayValue += ".";
+          updateDisplay();
+        }
+      }
+
+      function calculate() {
+        try {
+          displayValue = eval(displayValue).toString();
+          updateDisplay();
+        } catch (error) {
+          displayValue = "Error";
+          updateDisplay();
+        }
+      }
+
+      function clearDisplay() {
+        displayValue = "";
+        updateDisplay();
+      }
+
+      function deleteLastCharacter() {
+        displayValue = displayValue.slice(0, -1);
+        updateDisplay();
+      }
+
+      function updateDisplay() {
+        const display = document.getElementById("display");
+        display.value = displayValue;
+        display.focus();
+      }
+    </script>
+  </body>
+</html>
