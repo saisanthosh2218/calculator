@@ -10,7 +10,7 @@ Welcome to the Calculator App! This is a simple web-based calculator that allows
 
 ## Demo
 
-You can access the live demo of the Calculator App [here](https://bejewelled-kashata-d85f7b.netlify.app/).
+You can access the live demo of the Calculator App [Here](https://bejewelled-kashata-d85f7b.netlify.app/).
 
 ## Technologies Used
 
